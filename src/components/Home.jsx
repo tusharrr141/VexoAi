@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { URL } from "../constants";
 import RecentSearch from "./RecentSearch";
 import QuestionAnswer from "./QuestionAnswer";
+import { Moon, Sun } from "lucide-react";
+import ThemeSelector from "./ThemeSelector";
 
 function Home({ name, darkMode, setDarkMode }) {
   const [question, setQuestion] = useState("");
@@ -45,14 +47,23 @@ function Home({ name, darkMode, setDarkMode }) {
     });
 
     response = await response.json();
+
     let dataString = response.candidates[0].content.parts[0].text;
-    let dataList = dataString.split("* ").map((item) => item.trim());
+
+    // Ensure result is always an array
+    let dataList = dataString.includes("* ")
+      ? dataString
+          .split("* ")
+          .filter(Boolean)
+          .map((s) => s.trim())
+      : [dataString.trim()];
 
     setResult((prev) => [
       ...prev,
       { type: "q", text: query },
       { type: "a", text: dataList },
     ]);
+
     setQuestion("");
     setSelectedHistory("");
     setLoader(false);
@@ -76,29 +87,22 @@ function Home({ name, darkMode, setDarkMode }) {
   }, [selectedHistory]);
 
   return (
-    <div className="grid grid-cols-5 h-full bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white">
+    <div className="grid grid-cols-5 h-full custom-scrollbar bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white">
       {/* Sidebar */}
       <div className="border-r border-zinc-700 dark:border-zinc-600">
         <RecentSearch
           recentHistory={recentHistory}
           setRecentHistory={setRecentHistory}
           setSelectedHistory={setSelectedHistory}
+          selectedHistory={selectedHistory}
+          setResult={setResult}
+          darkMode={darkMode}
+          setDarkMode={setDarkMode}
         />
       </div>
 
       {/* Main content area */}
       <div className="col-span-4 p-6 flex flex-col h-screen overflow-hidden">
-        {/* Theme Switch */}
-        <div className="absolute bottom-4 left-4 z-10">
-          <select
-            value={darkMode}
-            onChange={(e) => setDarkMode(e.target.value)}
-            className="bg-zinc-800 text-white dark:bg-zinc-100 dark:text-black px-2 py-1 rounded"
-          >
-            <option value="dark">Dark</option>
-            <option value="light">Light</option>
-          </select>
-        </div>
 
         {/* Greeting with Name */}
         <h1 className="text-3xl mb-2 font-semibold text-center text-zinc-500">
@@ -120,7 +124,7 @@ function Home({ name, darkMode, setDarkMode }) {
         {/* Q&A Section */}
         <div
           ref={containerRef}
-          className="flex-1 overflow-y-auto pr-4 dark:text-zinc-300 text-zinc-800 space-y-3"
+          className="flex-1 custom-scrollbar pr-4 dark:text-zinc-300 text-zinc-800 space-y-3"
         >
           {result.map((item, index) => {
             const isLatestQuestion =

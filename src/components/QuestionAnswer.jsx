@@ -6,7 +6,7 @@ const QuestionAnswer = ({ item, index }) => {
   return (
     <div
       key={index}
-      className={`my-2 px-4 w-full flex ${isQuestion ? 'justify-end' : 'justify-start'}`}
+      className={`py-2 px-4 w-full flex ${isQuestion ? 'justify-end' : 'justify-start'}`}
     >
       {/* For questions: single Answer bubble */}
       {isQuestion ? (
@@ -17,13 +17,13 @@ const QuestionAnswer = ({ item, index }) => {
           type={item.type}
         />
       ) : (
-        // For answers: render each bullet point or paragraph
-        <div className="flex flex-col space-y-2 max-w-[80%]">
-          {item.text.map((ansItem, ansIndex) => (
+        // For answers: render text safely as an array
+        <div className="flex flex-col space-y-2 max-w-[80%] bg-zinc-200 dark:bg-zinc-700 rounded-xl py-2">
+          {(Array.isArray(item.text) ? item.text : [item.text]).map((ansItem, ansIndex) => (
             <Answer
               key={ansIndex}
               ans={ansItem}
-              totalResult={item.text.length}
+              totalResult={1}
               index={ansIndex}
               type={item.type}
             />

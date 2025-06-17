@@ -1,9 +1,10 @@
 import React from "react";
 import { FaGithub, FaLinkedin, FaUserCircle } from "react-icons/fa";
+import { BackgroundBeamsWithCollision } from "./BackgroundBeamsWithCollision";
 
 const AnimatedCard = ({ inputValue, setInputValue, handleEnter, handleKeyDown }) => {
   return (
-    <div className="h-screen flex flex-col items-center justify-center bg-gradient-to-br from-purple-800 via-indigo-900 to-black text-white relative overflow-hidden">
+    <BackgroundBeamsWithCollision className="h-screen">
       <div className="bg-zinc-900 border border-zinc-700 shadow-xl p-8 rounded-3xl w-[26rem] text-center space-y-4 animate-fade-in backdrop-blur-sm bg-opacity-80">
         
         {/* Title */}
@@ -53,7 +54,7 @@ const AnimatedCard = ({ inputValue, setInputValue, handleEnter, handleKeyDown })
           <FaGithub />
         </a>
         <a
-          href="https://your-portfolio.com"
+          href="https://github.com/tusharrr141"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-pink-400 transition"
@@ -61,7 +62,7 @@ const AnimatedCard = ({ inputValue, setInputValue, handleEnter, handleKeyDown })
           <FaUserCircle />
         </a>
       </div>
-    </div>
+  </BackgroundBeamsWithCollision>
   );
 };
 

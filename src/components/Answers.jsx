@@ -50,10 +50,10 @@ const Answer = ({ ans, totalResult, index, type }) => {
   return (
     <div className={`flex ${type === 'q' ? 'justify-end' : 'justify-start'} my-2`}>
       <div
-        className={`max-w-[80%] px-4 py-3 rounded-2xl text-left shadow-md
+        className={`max-w-[80%] px-4  rounded-2xl  text-left 
           ${type === 'q'
-            ? 'bg-gradient-to-br from-purple-500 to-pink-500 text-white self-end'
-            : 'bg-zinc-200 dark:bg-zinc-700 text-zinc-800 dark:text-white self-start prose dark:prose-invert prose-sm max-w-full'
+            ? 'bg-gradient-to-br from-purple-500 to-pink-500 text-white self-end  mr-4 max-w-full shadow-md py-3'
+            : 'bg-zinc-200 dark:bg-zinc-700 text-zinc-700 dark:text-white self-start prose dark:prose-invert prose-sm max-w-full'
           }
         `}
       >

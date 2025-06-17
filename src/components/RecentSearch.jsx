@@ -1,20 +1,41 @@
-function RecentSearch({ recentHistory, setRecentHistory, setSelectedHistory }) {
+import ThemeSelector from "./ThemeSelector";
+
+function RecentSearch({
+  recentHistory,
+  setRecentHistory,
+  setSelectedHistory,
+  selectedHistory,
+  setResult,
+  darkMode,
+  setDarkMode,
+}) {
   const clearHistory = () => {
     localStorage.clear();
     setRecentHistory([]);
+    setSelectedHistory("");
+    setResult([]); // Clear answer too
+
   };
 
   const clearSelectedHistory = (selectedItem) => {
-    let history = JSON.parse(localStorage.getItem('history')) || [];
+    let history = JSON.parse(localStorage.getItem("history")) || [];
     history = history.filter((item) => item !== selectedItem);
     setRecentHistory(history);
-    localStorage.setItem('history', JSON.stringify(history));
+    localStorage.setItem("history", JSON.stringify(history));
+
+    // 🧠 If deleted item is the current selection, also reset answer & selection
+    if (selectedItem === selectedHistory) {
+      setSelectedHistory("");
+      setResult([]);
+    }
   };
 
   return (
-    <div className="h-full flex flex-col p-4">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-lg font-semibold dark:text-white text-zinc-800">Recent Searches</h2>
+    <div className="h-[95%] fixed w-[20%] custom-scrollbar flex flex-col p-4">
+      <div className="flex justify-between items-center mb-16">
+        <h2 className="text-lg font-semibold dark:text-white text-zinc-800">
+          Recent Searches
+        </h2>
         <button
           onClick={clearHistory}
           className="text-xs px-2 py-1 bg-zinc-700 hover:bg-zinc-800 text-white rounded"
@@ -24,8 +45,14 @@ function RecentSearch({ recentHistory, setRecentHistory, setSelectedHistory }) {
         </button>
       </div>
 
+  <div className="absolute top-28 left-0 z-20 mb-1">
+      <ThemeSelector darkMode={darkMode} setDarkMode={setDarkMode}/>
+  </div>
+    
+      
+
       {/* Scrollable history list */}
-      <ul className="flex-1 overflow-y-auto space-y-2 pr-1">
+      <ul className="flex-1 custom-scrollbar space-y-2 pr-1">
         {recentHistory?.length > 0 ? (
           recentHistory.map((item, index) => (
             <li
@@ -48,7 +75,9 @@ function RecentSearch({ recentHistory, setRecentHistory, setSelectedHistory }) {
             </li>
           ))
         ) : (
-          <p className="text-sm text-zinc-500 dark:text-zinc-400 italic">No history yet</p>
+          <p className="text-sm text-zinc-500 dark:text-zinc-400 italic">
+            No history yet
+          </p>
         )}
       </ul>
     </div>
