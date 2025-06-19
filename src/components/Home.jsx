@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { URL } from "../constants";
 import RecentSearch from "./RecentSearch";
 import QuestionAnswer from "./QuestionAnswer";
-import { Moon, Sun } from "lucide-react";
 import ThemeSelector from "./ThemeSelector";
 
 function Home({ name, darkMode, setDarkMode }) {
@@ -50,7 +49,6 @@ function Home({ name, darkMode, setDarkMode }) {
 
     let dataString = response.candidates[0].content.parts[0].text;
 
-    // Ensure result is always an array
     let dataList = dataString.includes("* ")
       ? dataString
           .split("* ")
@@ -87,9 +85,10 @@ function Home({ name, darkMode, setDarkMode }) {
   }, [selectedHistory]);
 
   return (
-    <div className="grid grid-cols-5 h-full custom-scrollbar bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white">
+    <div className="grid grid-cols-1 md:grid-cols-5 h-full custom-scrollbar bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white">
+      
       {/* Sidebar */}
-      <div className="border-r border-zinc-700 dark:border-zinc-600">
+      <div className="md:col-span-1 border-r border-zinc-700 dark:border-zinc-600">
         <RecentSearch
           recentHistory={recentHistory}
           setRecentHistory={setRecentHistory}
@@ -101,16 +100,53 @@ function Home({ name, darkMode, setDarkMode }) {
         />
       </div>
 
-      {/* Main content area */}
-      <div className="col-span-4 p-6 flex flex-col h-screen overflow-hidden">
+      {/* Main Content */}
+      <div className="md:col-span-4 p-4 md:p-6 flex flex-col h-screen overflow-hidden relative">
+        
+        {/* Header Row */}
+        <div className="w-full relative mb-2 flex justify-center md:mb-4">
+          {/* Greeting always centered */}
+          <h1 className="absolute top-1/2 -translate-y-1/2 text-base sm:text-2xl font-semibold text-zinc-500 text-center">
+            Hello <span className="text-pink-500 font-bold">{name}</span> 👋
+          </h1>
 
-        {/* Greeting with Name */}
-        <h1 className="text-3xl mb-2 font-semibold text-center text-zinc-500">
-          Hello <span className="text-pink-500 font-bold">{name}</span> 👋
-        </h1>
+          {/* Fixed on mobile */}
+          <div className="fixed top-2 right-2 z-50 flex-col gap-3 md:hidden flex items-end">
+            <ThemeSelector darkMode={darkMode} setDarkMode={setDarkMode} />
+            <button
+              className="px-4 py-1 text-sm bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-2xl shadow hover:opacity-90 transition"
+              onClick={() => {
+                setResult([]);
+                setSelectedHistory("");
+                setQuestion("");
+              }}
+            >
+              New Chat
+            </button>
+          </div>
+
+          {/* Inline on desktop */}
+          <div className="hidden md:flex justify-between items-center w-full">
+            <div className="flex-shrink-0 ml-4">
+              <ThemeSelector darkMode={darkMode} setDarkMode={setDarkMode} />
+            </div>
+            <div className="flex-shrink-0 mr-4">
+              <button
+                className="px-4 py-1 text-sm bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-2xl shadow hover:opacity-90 transition"
+                onClick={() => {
+                  setResult([]);
+                  setSelectedHistory("");
+                  setQuestion("");
+                }}
+              >
+                New Chat
+              </button>
+            </div>
+          </div>
+        </div>
 
         {/* Main Heading */}
-        <h2 className="text-4xl mb-4 text-center font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-violet-700">
+        <h2 className="text-3xl sm:text-4xl mb-2 text-center font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-violet-700">
           Ask me Anything
         </h2>
 
@@ -124,7 +160,7 @@ function Home({ name, darkMode, setDarkMode }) {
         {/* Q&A Section */}
         <div
           ref={containerRef}
-          className="flex-1 custom-scrollbar pr-4 dark:text-zinc-300 text-zinc-800 space-y-3"
+          className="flex-1 custom-scrollbar pr-2 sm:pr-4 dark:text-zinc-300 text-zinc-800 space-y-3 overflow-y-auto"
         >
           {result.map((item, index) => {
             const isLatestQuestion =

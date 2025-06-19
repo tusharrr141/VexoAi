@@ -6,8 +6,7 @@ function RecentSearch({
   setSelectedHistory,
   selectedHistory,
   setResult,
-  darkMode,
-  setDarkMode,
+
 }) {
   const clearHistory = () => {
     localStorage.clear();
@@ -32,24 +31,18 @@ function RecentSearch({
 
   return (
     <div className="h-[95%] fixed w-[20%] custom-scrollbar flex flex-col p-4">
-      <div className="flex justify-between items-center mb-16">
-        <h2 className="text-lg font-semibold dark:text-white text-zinc-800">
+      <div className="md:flex justify-between items-center mb-6 md:mb-16">
+        <h2 className="text-lg  font-semibold dark:text-white text-zinc-800">
           Recent Searches
         </h2>
         <button
           onClick={clearHistory}
-          className="text-xs px-2 py-1 bg-zinc-700 hover:bg-zinc-800 text-white rounded"
+          className="text-[10px] sm:text-xs px-2 py-[2px] sm:py-1 bg-zinc-700 hover:bg-zinc-800 text-white rounded"
           title="Clear All"
         >
           Clear All
         </button>
       </div>
-
-  <div className="absolute top-28 left-0 z-20 mb-1">
-      <ThemeSelector darkMode={darkMode} setDarkMode={setDarkMode}/>
-  </div>
-    
-      
 
       {/* Scrollable history list */}
       <ul className="flex-1 custom-scrollbar space-y-2 pr-1">
