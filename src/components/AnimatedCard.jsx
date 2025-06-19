@@ -2,24 +2,30 @@ import React from "react";
 import { FaGithub, FaLinkedin, FaUserCircle } from "react-icons/fa";
 import { BackgroundBeamsWithCollision } from "./BackgroundBeamsWithCollision";
 
-const AnimatedCard = ({ inputValue, setInputValue, handleEnter, handleKeyDown }) => {
+const AnimatedCard = ({
+  inputValue,
+  setInputValue,
+  handleEnter,
+  handleKeyDown,
+}) => {
   return (
     <BackgroundBeamsWithCollision className="h-screen">
-      <div className="bg-zinc-900 border border-zinc-700 shadow-xl p-8 rounded-3xl w-[26rem] text-center space-y-4 animate-fade-in backdrop-blur-sm bg-opacity-80">
-        
+      <div className="bg-zinc-900 border border-zinc-700 shadow-xl p-8 rounded-3xl w-[26rem] text-center space-y-4 animate-fade-in backdrop-blur-sm bg-opacity-80 max-sm:mx-4">
         {/* Title */}
         <h2 className="text-3xl font-bold bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
           Welcome to Voxa
         </h2>
 
         {/* Tagline */}
-        <p className="text-sm text-zinc-400 italic animate-pulse">Your smart companion for every question</p>
+        <p className="text-sm text-zinc-400 italic animate-pulse">
+          Your smart companion for every question
+        </p>
 
         {/* Input */}
-        <p className="text-zinc-400">Please enter your name to begin</p>
+
         <input
           type="text"
-          placeholder="Your name"
+          placeholder="Please enter your name to begin"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={handleKeyDown}
@@ -31,8 +37,6 @@ const AnimatedCard = ({ inputValue, setInputValue, handleEnter, handleKeyDown })
         >
           Enter
         </button>
-
-       
       </div>
 
       {/* Footer Social Icons */}
@@ -62,7 +66,7 @@ const AnimatedCard = ({ inputValue, setInputValue, handleEnter, handleKeyDown })
           <FaUserCircle />
         </a>
       </div>
-  </BackgroundBeamsWithCollision>
+    </BackgroundBeamsWithCollision>
   );
 };
 

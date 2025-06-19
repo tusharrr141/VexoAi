@@ -1,4 +1,4 @@
-import ThemeSelector from "./ThemeSelector";
+import { X } from "lucide-react";
 
 function RecentSearch({
   recentHistory,
@@ -6,14 +6,14 @@ function RecentSearch({
   setSelectedHistory,
   selectedHistory,
   setResult,
-
+  isMenuOpen,
+  setIsMenuOpen,
 }) {
   const clearHistory = () => {
     localStorage.clear();
     setRecentHistory([]);
     setSelectedHistory("");
     setResult([]); // Clear answer too
-
   };
 
   const clearSelectedHistory = (selectedItem) => {
@@ -30,17 +30,23 @@ function RecentSearch({
   };
 
   return (
-    <div className="h-[95%] fixed w-[20%] custom-scrollbar flex flex-col p-4">
-      <div className="md:flex justify-between items-center mb-6 md:mb-16">
+    <div className="h-[95%] fixed w-full md:w-[20%] custom-scrollbar flex flex-col p-4">
+      <div className=" items-center mb-3 ">
         <h2 className="text-lg  font-semibold dark:text-white text-zinc-800">
           Recent Searches
         </h2>
         <button
           onClick={clearHistory}
-          className="text-[10px] sm:text-xs px-2 py-[2px] sm:py-1 bg-zinc-700 hover:bg-zinc-800 text-white rounded"
+          className="border border-zinc-400 rounded-xl bg-zinc-500  flex items-center justify-center mt-3 hover:bg-red-600/80 cursor-pointer"
           title="Clear All"
         >
-          Clear All
+          <p className="px-4 py-1 text-center text-white">Clear all</p>
+        </button>
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="md:hidden absolute top-5 right-8"
+        >
+          <X className="size-5 " />
         </button>
       </div>
 
