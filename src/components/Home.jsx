@@ -4,7 +4,7 @@ import RecentSearch from "./RecentSearch";
 import QuestionAnswer from "./QuestionAnswer";
 import ThemeSelector from "./ThemeSelector";
 import { Menu, MessageCircleDashed, MessageSquareText } from "lucide-react";
-import { astroPrompt } from "../../data/data";
+import { characterPrompts } from "../../data/data";
 
 function Home({ name, darkMode, setDarkMode }) {
   const [question, setQuestion] = useState("");
@@ -15,6 +15,7 @@ function Home({ name, darkMode, setDarkMode }) {
   const [selectedHistory, setSelectedHistory] = useState("");
   const [loader, setLoader] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [character, setCharacter] = useState("neutral");
 
   const containerRef = useRef(null);
   const lastQuestionRef = useRef(null);
@@ -28,14 +29,18 @@ function Home({ name, darkMode, setDarkMode }) {
   }, [darkMode]);
 
   const askQuestion = useCallback(async () => {
+    // MAIN Function to ask a question
     if (!question && !selectedHistory) return;
 
-    const astro = astroPrompt.prompt;
-
     const query = question || selectedHistory;
-    const astroQuery = query + " " + astro;
+    //const astroQuery = query;
 
-    console.log(astroQuery);
+    //console.log(astroQuery);
+    const finalPrompt = `
+    ${characterPrompts[character].prompt}
+
+     User's Question: ${question || selectedHistory}
+   `;
 
     if (question) {
       let history = JSON.parse(localStorage.getItem("history")) || [];
@@ -48,7 +53,7 @@ function Home({ name, darkMode, setDarkMode }) {
     }
 
     const payload = {
-      contents: [{ parts: [{ text: astroQuery }] }],
+      contents: [{ parts: [{ text: finalPrompt }] }],
     };
 
     setLoader(true);
@@ -145,6 +150,25 @@ function Home({ name, darkMode, setDarkMode }) {
               </div>
 
               <div className="flex items-end space-x-3">
+                {/* character selection */}
+                <div className=" w-32  flex items-center justify-center">
+                  <select
+                    className="w-full p-2 rounded-xl border dark:bg-zinc-800 dark:text-white"
+                    value={character}
+                    onChange={(e) => setCharacter(e.target.value)}
+                  >
+                    {Object.entries(characterPrompts).map(
+                      (
+                        [key, val] //This converts the object into an array of key-value pairs.
+                      ) => (
+                        <option key={key} value={key}>
+                          {val.label}
+                        </option>
+                      )
+                    )}
+                  </select>
+                </div>
+
                 {/* new chat */}
                 <div className="dark:bg-zinc-600 bg-zinc-100 p-2 rounded-xl flex items-center justify-center">
                   <MessageSquareText
