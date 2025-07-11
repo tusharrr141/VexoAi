@@ -239,25 +239,25 @@ const VexoAILandingPage = ({ onNameSubmitted }) => {
           <div className="hidden md:flex space-x-8">
             <button
               onClick={() => scrollToSection(heroRef)}
-              className="text-gray-200 hover:text-white transition-colors duration-200 text-lg font-semibold"
+              className="text-gray-200 hover:text-white transition-colors duration-200 text-lg font-semibold cursor-pointer"
             >
               Home
             </button>
             <button
               onClick={() => scrollToSection(aboutRef)}
-              className="text-gray-200 hover:text-white transition-colors duration-200 text-lg font-semibold"
+              className="text-gray-200 hover:text-white transition-colors duration-200 text-lg font-semibold cursor-pointer"
             >
               About
             </button>
             <button
               onClick={() => scrollToSection(whyVexoRef)}
-              className="text-gray-200 hover:text-white transition-colors duration-200 text-lg font-semibold"
+              className="text-gray-200 hover:text-white transition-colors duration-200 text-lg font-semibold cursor-pointer"
             >
               Features
             </button>
             <button
               onClick={() => scrollToSection(socialsRef)}
-              className="text-gray-200 hover:text-white transition-colors duration-200 text-lg font-semibold"
+              className="text-gray-200 hover:text-white transition-colors duration-200 text-lg font-semibold cursor-pointer"
             >
               Socials
             </button>
@@ -290,25 +290,25 @@ const VexoAILandingPage = ({ onNameSubmitted }) => {
           <div className="md:hidden mt-4 space-y-4 flex flex-col items-center">
             <button
               onClick={() => scrollToSection(heroRef)}
-              className="text-gray-200 hover:text-white transition-colors duration-200 text-lg font-semibold w-full py-2"
+              className="text-gray-200 hover:text-white transition-colors duration-200 text-lg font-semibold w-full py-2 cursor-pointer"
             >
               Home
             </button>
             <button
               onClick={() => scrollToSection(aboutRef)}
-              className="text-gray-200 hover:text-white transition-colors duration-200 text-lg font-semibold w-full py-2"
+              className="text-gray-200 hover:text-white transition-colors duration-200 text-lg font-semibold w-full py-2 cursor-pointer"
             >
               About
             </button>
             <button
               onClick={() => scrollToSection(whyVexoRef)}
-              className="text-gray-200 hover:text-white transition-colors duration-200 text-lg font-semibold w-full py-2"
+              className="text-gray-200 hover:text-white transition-colors duration-200 text-lg font-semibold w-full py-2 cursor-pointer"
             >
               Features
             </button>
             <button
               onClick={() => scrollToSection(socialsRef)}
-              className="text-gray-200 hover:text-white transition-colors duration-200 text-lg font-semibold w-full py-2"
+              className="text-gray-200 hover:text-white transition-colors duration-200 text-lg font-semibold w-full py-2 cursor-pointer"
             >
               Socials
             </button>
@@ -427,13 +427,13 @@ const VexoAILandingPage = ({ onNameSubmitted }) => {
         >
           <button
             onClick={handleStartConvo}
-            className="px-10 py-5 bg-gradient-to-r from-pink-600 to-purple-600 text-white font-bold text-xl rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-purple-300 focus:ring-opacity-75 animate-pulse"
+            className="px-10 py-5 bg-gradient-to-r from-pink-600 to-purple-600 text-white font-bold text-xl rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-purple-300 focus:ring-opacity-75 animate-pulse cursor-pointer"
           >
             Start Convo
           </button>
           <button
             onClick={handleLearnMore}
-            className="px-8 py-4 bg-gradient-to-r from-pink-600 to-purple-600 text-white font-bold text-lg rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-purple-300 focus:ring-opacity-75"
+            className="px-8 py-4 bg-gradient-to-r from-pink-600 to-purple-600 text-white font-bold text-lg rounded-full cursor-pointer shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-purple-300 focus:ring-opacity-75"
           >
             Learn More
           </button>
@@ -670,13 +670,13 @@ const VexoAILandingPage = ({ onNameSubmitted }) => {
             )}
             <button
               onClick={handleNameSubmit}
-              className="w-full py-4 bg-gradient-to-r from-pink-600 to-purple-600 text-white font-bold text-xl rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-purple-300 focus:ring-opacity-75"
+              className="w-full py-4 bg-gradient-to-r from-pink-600 to-purple-600 text-white font-bold text-xl cursor-pointer rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-purple-300 focus:ring-opacity-75"
             >
               Let's Chat!
             </button>
             <button
               onClick={() => setShowNameInput(false)}
-              className="mt-4 text-gray-500 hover:text-gray-700 transition-colors duration-200"
+              className="mt-4 cursor-pointer text-gray-500 hover:text-gray-700 transition-colors duration-200"
             >
               No thanks
             </button>

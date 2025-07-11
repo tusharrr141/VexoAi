@@ -151,7 +151,7 @@ function Home({ name, darkMode, setDarkMode }) {
 
               <div className="flex items-end space-x-3">
                 {/* character selection */}
-                <div className=" w-32  flex items-center justify-center">
+                <div className=" w-32 flex items-center justify-center cursor-pointer">
                   <select
                     className="w-full p-2 rounded-xl border dark:bg-zinc-800 dark:text-white"
                     value={character}
@@ -241,7 +241,7 @@ function Home({ name, darkMode, setDarkMode }) {
               />
               <button
                 onClick={askQuestion}
-                className="ml-3 px-4 py-1 bg-gradient-to-r from-pink-600 to-purple-600 text-white rounded-2xl hover:opacity-90 transition"
+                className="ml-3 cursor-pointer px-4 py-1 bg-gradient-to-r from-pink-600 to-purple-600 text-white rounded-2xl hover:opacity-90 transition"
               >
                 Ask
               </button>

@@ -35,7 +35,7 @@ export function cleanMarkdownOutput(text) {
     .map(line =>
       line
         // Remove markdown bullets, numbers, special symbols at start
-        .replace(/^(\*+|\_+|~+|`+|#+|>+|-+|\d+\.)\s*/g, "")
+        .replace(/^(\*+|_+|~+|`+|#+|>+|-+|\d+\.)\s*/g, "")
         // Remove asterisks from *word*, *word, word*, and in the middle
         .replace(/\*(\S.*?)\*/g, "$1")  // *text* → text
         .replace(/(^|\s)\*(\w+)/g, "$1$2")  // *word → word
